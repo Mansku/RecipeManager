@@ -1,3 +1,6 @@
+:root {
+  --searchBarColor: #c2fcf7;
+}
 * {
   margin: 0;
   padding: 0;
@@ -9,10 +12,12 @@ body {
   /* height: 100vh; */
   /* width: 100vw - 250px; */
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: rgba(211, 206, 206, 0.178);
 }
 .header {
-  background-color: #c9fbff;
+  background-color: white;
   height: 70px;
+  border-bottom: solid 1px black;
 }
 #headerWelcome {
   display: inline-block;
@@ -27,7 +32,8 @@ body {
 #searchBar {
   /* display: flex; */
   /* transform: translateY(10px); */
-  border: solid 1px #c2fcf7;
+  outline: none;
+  border: 1px solid var(--searchBarColor);
   padding: 10px;
   font-size: 17px;
   width: 350px;
@@ -38,12 +44,24 @@ body {
   font-size: 17px;
   cursor: pointer;
   background: white;
-  border: none;
+  border: 1px solid var(--searchBarColor);
+  border-left: none;
   transform: translateX(-6px);
 }
 #searchBar:focus {
-  border-color: blue;
+  border: 2px solid rgba(81, 203, 238, 1);
+  /* box-shadow: 0 0 5px rgba(81, 203, 238, 1); */
+}
+#searchBar:focus  + #searchButton{
+  /* border: none; */
+  /* box-shadow: 0 0 5px rgba(81, 203, 238, 1); */
+  /* box-shadow: 0 0 5px rgba(81, 203, 238, 1); */
+  border: 2px solid rgba(81, 203, 238, 1);
+  border-left: none;
   /* background-color: black; */
+}
+.fa-search:hover {
+  color: blue;
 }
 
 .navLeftSide {
@@ -51,11 +69,50 @@ body {
   position: fixed;
   width: 250px;
   height: 100%;
-  background-color: #86bbbe;
+  background-color: white;
+  /* border-right: solid 1px black; */
+}
+.navBoxes {
+  /* transform: translateY(200px); */
+}
+.navIcon {
+  text-align: center;
+  display: block;
+  /* background-color: black; */
+  transform: translateY(40px);
+}
+.navBoxes ul {
+  transform: translateY(100px);
+  list-style: none;
+  display: grid;
+  grid-gap: 20px;
+  padding: 0;
+}
+.navBoxes a {
+  text-decoration: none;
+  display: block;
+  padding: 0px;
+  text-align: center;
+  font-size: 17px;
+}
+.navBoxes a:hover {
+  background-color: rgba(211, 206, 206, 0.178);
+  color: black;
 }
 .recipeSection {
   display: block;
   /* background-color: black; */
   margin-left: 250px;
-  /* height: 100%; */
+  /* height: 100vh; */
 }
+
+@media only screen and (max-width: 600px) {
+  .header {
+    height: 90px;
+  }
+  .navLeftSide {
+    width: 150px;
+  }
+  .recipeSection {
+    margin-left: 150px;
+  }
