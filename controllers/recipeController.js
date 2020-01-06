@@ -1,8 +1,20 @@
 var Recipe = require("../models/recipe");
 
 // Display list of all Recipes.
-exports.recipe_list = function(req, res) {
-  res.send("NOT IMPLEMENTED: Recipe list");
+exports.recipe_list = function(req, res, next) {
+  // res.send("NOT IMPLEMENTED: Recipe list");
+  Recipe.find({}, "title recipe")
+    .populate("recipe")
+    .exec(function(err, list_recipes) {
+      if (err) {
+        return next(err);
+      }
+      // successful, so render
+      res.render("recipe_list", {
+        title: "Recipe List",
+        recipe_list: list_recipes
+      });
+    });
 };
 
 // Display detail page for a specific Recipe.
