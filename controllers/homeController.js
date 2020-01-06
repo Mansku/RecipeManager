@@ -1,7 +1,33 @@
 var Home = require("../models/home");
+var Recipe = require("../models/recipe");
+var Author = require("../models/author");
+var Ingredient = require("../models/ingredient");
+
+var async = require("async");
 
 exports.index = function(req, res) {
-  res.send("NOT IMPLEMENTED YET: Site home/news page");
+  // res.send("NOT IMPLEMENTED YET: Site home/news page");
+
+  async.parallel(
+    {
+      home_count: function(callback) {
+        Home.countDocuments({}, callback);
+      },
+      recipe_count: function(callback) {
+        Recipe.countDocuments({}, callback);
+      },
+      ingredient_count: function(callback) {
+        Ingredient.countDocuments({}, callback);
+      }
+    },
+    function(err, results) {
+      res.render("index", {
+        title: "Recipe Manager Home",
+        error: err,
+        data: results
+      });
+    }
+  );
 };
 
 // Display list of all News.

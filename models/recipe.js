@@ -3,7 +3,7 @@ var mongoose = require("mongoose");
 
 var Schema = mongoose.Schema;
 
-var RecipeSchema = new Schema({
+const RecipeSchema = new Schema({
   title: { type: String, required: true, max: 100 },
   ingredients: [
     { type: Schema.Types.ObjectId, ref: "Ingredient", required: true }

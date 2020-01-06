@@ -3,7 +3,7 @@ var mongoose = require("mongoose");
 
 var Schema = mongoose.Schema;
 
-var IngredientSchema = new Schema({
+const IngredientSchema = new Schema({
   name: { type: String, required: true, max: 100 }
 });
 
