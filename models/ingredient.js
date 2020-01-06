@@ -3,8 +3,9 @@ var mongoose = require("mongoose");
 
 var Schema = mongoose.Schema;
 
-const IngredientSchema = new Schema({
-  name: { type: String, required: true, max: 100 }
+var IngredientSchema = new Schema({
+  name: { type: String, required: true, max: 100 },
+  amount: { type: String, required: true }
 });
 
 // virtual for ingredients url

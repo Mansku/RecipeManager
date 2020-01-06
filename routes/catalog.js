@@ -8,11 +8,36 @@ var ingredient_controller = require("../controllers/ingredientController");
 var recipe_controller = require("../controllers/recipeController");
 
 // AUTHOR controller ja schema MISSING scripts!!
-
-// Home ROUTES
+// RECIPE ROUTES
 
 // GET catalog home page.
 router.get("/", home_controller.index);
+
+// GET request for creating a RECIPE
+router.get("/recipe/create", recipe_controller.recipe_create_get);
+
+// POST request for creating a RECIPE
+router.post("/recipe/create", recipe_controller.recipe_create_post);
+
+// GET request for deleting RECIPE
+router.get("/recipe/:id/delete", recipe_controller.recipe_delete_get);
+
+// POST request for deleting RECIPE
+router.post("/recipe/:id/delete", recipe_controller.recipe_delete_post);
+
+// GET request to update RECIPE
+router.get("/recipe/:id/update", recipe_controller.recipe_update_get);
+
+// POST request to update RECIPE
+router.post("/recipe/:id/update", recipe_controller.recipe_update_post);
+
+// GET request for one RECIPE
+router.get("/recipe/:id", recipe_controller.recipe_detail);
+
+// GET request for a list of all RECIPES
+router.get("/recipes", recipe_controller.recipe_list);
+
+// Home ROUTES
 
 // GET request for creating a NEWS item on Home page
 router.get("/home/create", home_controller.news_create_get);
@@ -75,31 +100,5 @@ router.get("/ingredient/:id", ingredient_controller.ingredient_detail);
 
 // GET request for a list of all INGREDIENTS
 router.get("/ingredients", ingredient_controller.ingredient_list);
-
-// RECIPE ROUTES
-
-// GET request for creating a RECIPE
-router.get("/recipe/create", recipe_controller.recipe_create_get);
-
-// POST request for creating a RECIPE
-router.post("/recipe/create", recipe_controller.recipe_create_post);
-
-// GET request for deleting RECIPE
-router.get("/recipe/:id/delete", recipe_controller.recipe_delete_get);
-
-// POST request for deleting RECIPE
-router.post("/recipe/:id/delete", recipe_controller.recipe_delete_post);
-
-// GET request to update RECIPE
-router.get("/recipe/:id/update", recipe_controller.recipe_update_get);
-
-// POST request to update RECIPE
-router.post("/recipe/:id/update", recipe_controller.recipe_update_post);
-
-// GET request for one RECIPE
-router.get("/recipe/:id", recipe_controller.recipe_detail);
-
-// GET request for a list of all RECIPES
-router.get("/recipes", recipe_controller.recipe_list);
 
 module.exports = router;

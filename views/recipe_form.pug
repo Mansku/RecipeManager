@@ -1,0 +1,29 @@
+extends layout
+
+block content
+  h1= title
+
+  form(method='POST' action='')
+    div.form-group 
+      label(for='title') Title:
+      input#title.form-control(type='text', placeholder='Recipe name', name='title', required='true', value=(undefined===recipe ? '': recipe.title))
+    div.form-group 
+      //- label(for='ingredient') Ingredients:
+      //- input#ingredients.form-control(type='text', placeholder='Chicken', required='true', name='ingredient')
+      //- label(for='ingredientAmount') Amount:
+      //- input#ingredients.form-control(type='text', placeholder='100g', required='true', name='ingredient')
+      label(for='ingredient') Ingredients:
+      textarea#ingredients.form-control(type='textarea', placeholder='Ingredients', name='ingredients', rows='5', required='true') #{undefined===recipe ? '' : recipe.ingredients}
+    div.form-group 
+      label(for='directionn') Directions:
+      textarea#directions.form-control(type='textarea', placeholder='Directions', name='directions', rows='5', required='true') #{undefined===recipe ? '' : recipe.directions}
+    div.form-group 
+      label(for='comment') Comment:
+      input#comment.form-control(type='text', placeholder='Comment not required', name='comment')
+
+    button.btn.btn-primary(type='submit') Submit
+
+    if errors
+      ul
+        for error in errors
+          li!= error.msg
