@@ -52,7 +52,7 @@ body {
   border: 2px solid rgba(81, 203, 238, 1);
   /* box-shadow: 0 0 5px rgba(81, 203, 238, 1); */
 }
-#searchBar:focus  + #searchButton{
+#searchBar:focus + #searchButton {
   border: 2px solid rgba(81, 203, 238, 1);
   border-left: none;
   /* background-color: black; */
@@ -69,9 +69,9 @@ body {
   background-color: white;
   /* border-right: solid 1px black; */
 }
-.navBoxes {
-  /* transform: translateY(200px); */
-}
+/* .navBoxes { */
+/* transform: translateY(200px); */
+/* } */
 .navIcon {
   text-align: center;
   display: block;
@@ -113,3 +113,4 @@ body {
   .recipeSection {
     margin-left: 150px;
   }
+}

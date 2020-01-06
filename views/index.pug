@@ -1,5 +1,37 @@
-extends layout
-
-block content
-  h1= title
-  p Welcome to #{title}
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  meta(http-equiv='X-UA-Compatible' content='ie=edge')
+  title Recipe Manager
+  link(rel='stylesheet' type='text/css' href='stylesheets/style.css')
+  script(src='https://kit.fontawesome.com/e556b96a3b.js' crossorigin='anonymous')
+header.header
+  h1#headerWelcome Recipe Manager
+  // search bar here
+  form#searchForm(action='#')
+    input#searchBar(type='text' placeholder='search..')
+    button#searchButton(type='submit')
+      i.fas.fa-search
+nav.navLeftSide
+  // <h1>hello</h1>
+  // icon here 'new' 'public' 'own/private' yms
+  section.navBoxes
+    .navIcon
+      // TEMP ICON !!CHANGE THIS!!
+      i.fas.fa-book-open.fa-7x
+      a#login(href='#login') Sign in
+    ul
+      li
+        a(href='#home' onclick='homeScreen();') Home
+      li
+        a(href='#') Recipies
+      li
+        a(href='#') New
+      li
+        a(href='#') Favorites
+section#dataSection.recipeSection
+  h1 hello2
+  // site data here
+  block content
+script(defer='' type='text/javascript' src='javascripts/index.js')
