@@ -37,7 +37,8 @@ exports.recipe_detail = function(req, res) {
       //successful, so render
       res.render("recipe_detail", {
         title: "Title: " + recipe.title,
-        recipe: recipe
+        recipe: recipe,
+        ingredients: recipe.Ingredient
       });
     });
 };
@@ -66,19 +67,21 @@ exports.recipe_create_get = function(req, res, next) {
 // Handle Recipe create on POST.
 exports.recipe_create_post = [
   // res.send("NOT IMPLEMENTED: Recipe create POST");
-  // ingredients to array
+
   // (req, res, next) => {
-  //   if (!(req.body.Ingredient instanceof Array)) {
-  //     if (typeof req.body.Ingredient === "indefined") req.body.Ingredient = [];
-  //     else req.body.Ingredient = new Array(req.body.Ingredient);
+  //   if (!(req.body.ingredients instanceof Array)) {
+  //     if (typeof req.body.ingredients === "undefined")
+  //       req.body.ingredients = [];
+  //     else req.body.ingredients = new Array(req.body.ingredients);
   //   }
   //   next();
   // },
+
   // validation field
   body("title", "Title must not be empty")
     .isLength({ min: 1 })
     .trim(),
-  body("ingredients", "Ingredients must not ne empty")
+  body("ingredients[]", "Ingredient must not ne empty")
     .isLength({ min: 1 })
     .trim(),
   body("directions", "Directions must not ne empty")
@@ -87,41 +90,83 @@ exports.recipe_create_post = [
   body("comment").trim(),
 
   // sanitize fields (using wildcard)
-  sanitizeBody("title").escape(),
-  sanitizeBody("ingredients").escape(),
-  sanitizeBody("directions").escape(),
-  sanitizeBody("comment").escape(),
+  // sanitizeBody("title").escape(),
+  // sanitizeBody("ingredients").escape(),
+  // sanitizeBody("directions").escape(),
+  // sanitizeBody("comment").escape(),
+  sanitizeBody("*").escape(),
 
   // process request after validation and sanitization
   (req, res, next) => {
+    // req.body.ingredients = new Array(req.body.ingredients);
     // exctract the validation errors from a request
     const errors = validationResult(req);
 
     // Create recipe object with escaped and trimmed data
+
+    // for (val in req.body) {
+    //   if (val === req.body.Ingredient) {
+    //     ingredientList.push({ val });
+    //   }
+    // }
+    // for (var i = 0; i <= 1; i++) {
+    //   ingredientList.push(req.body.i);
+    //   console.log(JSON.stringify(req.body.ingredients));
+    // }
+    var ingList = [];
+    // var i = 0;
+    // while (i <= 1) {
+    //   var str = i.toString();
+    //   ingList.push(req.body.str);
+    //   console.log(req.body.str);
+    //   i++;
+    // }
+    // var i = 0;
+    // while (i <= 1) {
+    //   var str = "ingredients" + i.toString();
+    //   var ing = req.body.str;
+    //   ingList.push(ing);
+    //   console.log(ing);
+    //   i++;
+    // }
+    // console.log(req.body.title);
+
+    console.log(req.body.ingredients0);
+    console.log(req.body.ingredients1);
+    ingList.push(req.body.ingredients0);
+    ingList.push(req.body.ingredients1);
+
     var recipe = new Recipe({
       title: req.body.title,
-      ingredients: req.body.ingredients,
+      ingredients: ingList,
       directions: req.body.directions,
       comment: req.body.comment
     });
+    // recipe.ingredients.push(Ingredient);
 
-    if (!errors.isEmpty()) {
-      // There are errors. Render form again with sanitized values/error messages
-
-      res.render("recipe_form", {
-        title: "Create Recipe",
-        ingredients: results.ingredients
-      });
-    } else {
-      // Data form is valid. save recipe
-      recipe.save(function(err) {
-        if (err) {
-          return next(err);
-        }
-        // successful -redirect to a new recipe.
-        res.redirect(recipe.url);
-      });
-    }
+    // if (!errors.isEmpty()) {
+    //   // There are errors. Render form again with sanitized values/error messages
+    //   res.render("recipe_form", {
+    //     title: "Create Recipe"
+    //     // ingredients: results.ingredients
+    //   });
+    // } else {
+    //   // Data form is valid. save recipe
+    //   recipe.save(function(err) {
+    //     if (err) {
+    //       return next(err);
+    //     }
+    //     // successful -redirect to a new recipe.
+    //     res.redirect(recipe.url);
+    //   });
+    // }
+    recipe.save(function(err) {
+      if (err) {
+        return next(err);
+      }
+      // successful -redirect to a new recipe.
+      res.redirect(recipe.url);
+    });
   }
 ];
 

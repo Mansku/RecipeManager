@@ -8,14 +8,12 @@ block content
       label(for='title') Title:
       input#title.form-control(type='text', placeholder='Recipe name', name='title', required='true', value=(undefined===recipe ? '': recipe.title))
     div.form-group 
-      //- label(for='ingredient') Ingredients:
-      //- input#ingredients.form-control(type='text', placeholder='Chicken', required='true', name='ingredient')
-      //- label(for='ingredientAmount') Amount:
-      //- input#ingredients.form-control(type='text', placeholder='100g', required='true', name='ingredient')
-      label(for='ingredient') Ingredients:
-      textarea#ingredients.form-control(type='textarea', placeholder='Ingredients', name='ingredients', rows='5', required='true') #{undefined===recipe ? '' : recipe.ingredients}
+      label(for='ingredients0') Ingredient 1:
+      input#ingredients0.form-control(type='text', placeholder='First Igredient', required='true', name='ingredients0')
+      label(for='ingredients1') Ingredient 2:
+      input#ingredients1.form-control(type='text', placeholder='Second Igredient', required='true', name='ingredients1')
     div.form-group 
-      label(for='directionn') Directions:
+      label(for='directions') Directions:
       textarea#directions.form-control(type='textarea', placeholder='Directions', name='directions', rows='5', required='true') #{undefined===recipe ? '' : recipe.directions}
     div.form-group 
       label(for='comment') Comment:

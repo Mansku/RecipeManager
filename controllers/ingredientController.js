@@ -1,5 +1,7 @@
 var Ingredient = require("../models/ingredient");
 
+// THIS WAS A BAD IDEA REMOVE, just use array in recipe chema for ingredients!!!
+
 // Display list of all Ingredients.
 exports.ingredient_list = function(req, res) {
   res.send("NOT IMPLEMENTED: Ingredient list");

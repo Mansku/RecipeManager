@@ -3,7 +3,10 @@ extends layout
 block content
   h1 Title: #{recipe.title}
 
-  p #[strong Ingredients:] #{recipe.ingredients}
+  p #[strong Ingredients:] 
+    ul
+      each ingredient in recipe.ingredients
+        li #{ingredient}
   br
   p #[strong Directions:] #{recipe.directions}
   br
