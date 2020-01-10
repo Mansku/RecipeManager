@@ -77,11 +77,12 @@ exports.recipe_create_post = [
   //   next();
   // },
 
-  // validation field
+  // validate fields
   body("title", "Title must not be empty")
     .isLength({ min: 1 })
     .trim(),
-  body("ingredients[]", "Ingredient must not ne empty")
+  // Ingredients validation needs work!!!! has multiple inputs ingredients0, 1...
+  body("ingredients", "Ingredient must not ne empty")
     .isLength({ min: 1 })
     .trim(),
   body("directions", "Directions must not ne empty")
@@ -89,15 +90,12 @@ exports.recipe_create_post = [
     .trim(),
   body("comment").trim(),
 
-  // sanitize fields (using wildcard)
-  // sanitizeBody("title").escape(),
-  // sanitizeBody("ingredients").escape(),
-  // sanitizeBody("directions").escape(),
-  // sanitizeBody("comment").escape(),
+  // Sanitize using wildcard
   sanitizeBody("*").escape(),
 
   // process request after validation and sanitization
   (req, res, next) => {
+    // THIS NEXT BIT REQUIRES MORE WORK AND TESTING!!
     // req.body.ingredients = new Array(req.body.ingredients);
     // exctract the validation errors from a request
     const errors = validationResult(req);
@@ -114,27 +112,16 @@ exports.recipe_create_post = [
     //   console.log(JSON.stringify(req.body.ingredients));
     // }
     var ingList = [];
-    // var i = 0;
-    // while (i <= 1) {
-    //   var str = i.toString();
-    //   ingList.push(req.body.str);
-    //   console.log(req.body.str);
-    //   i++;
-    // }
-    // var i = 0;
-    // while (i <= 1) {
-    //   var str = "ingredients" + i.toString();
-    //   var ing = req.body.str;
-    //   ingList.push(ing);
-    //   console.log(ing);
-    //   i++;
-    // }
-    // console.log(req.body.title);
 
-    console.log(req.body.ingredients0);
-    console.log(req.body.ingredients1);
-    ingList.push(req.body.ingredients0);
-    ingList.push(req.body.ingredients1);
+    var i = 0;
+    while (i <= 6) {
+      var str = "ingredients" + i.toString();
+      if (req.body[str]) {
+        ingList.push(req.body[str]);
+      }
+      i++;
+    }
+    // console.log(req.body.ingredients);
 
     var recipe = new Recipe({
       title: req.body.title,

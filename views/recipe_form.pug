@@ -11,7 +11,18 @@ block content
       label(for='ingredients0') Ingredient 1:
       input#ingredients0.form-control(type='text', placeholder='First Igredient', required='true', name='ingredients0')
       label(for='ingredients1') Ingredient 2:
-      input#ingredients1.form-control(type='text', placeholder='Second Igredient', required='true', name='ingredients1')
+      input#ingredients1.form-control(type='text', placeholder='Second Igredient', name='ingredients1')
+      br
+      label(for='ingredients3') Ingredient 3:
+      input#ingredients3.form-control(type='text', placeholder='Third Igredient',, name='ingredients3')
+      label(for='ingredients4') Ingredient 4:
+      input#ingredients4.form-control(type='text', placeholder='Fourth Igredient', name='ingredients4')
+      br
+      label(for='ingredients5') Ingredient 5:
+      input#ingredients5.form-control(type='text', placeholder='Fifth Igredient', name='ingredients5')
+      label(for='ingredients6') Ingredient 6:
+      input#ingredients6.form-control(type='text', placeholder='Sixth Igredient', name='ingredients6')
+      br
     div.form-group 
       label(for='directions') Directions:
       textarea#directions.form-control(type='textarea', placeholder='Directions', name='directions', rows='5', required='true') #{undefined===recipe ? '' : recipe.directions}
