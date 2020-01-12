@@ -2,12 +2,14 @@ extends layout
 
 block content
   h1 Title: #{recipe.title}
-
-  p #[strong Ingredients:] 
+  br
+  h2 #[strong Ingredients:]
+  p 
     ul
       each ingredient in recipe.ingredients
         li #{ingredient}
   br
-  p #[strong Directions:] #{recipe.directions}
+  h2 #[strong Directions:] 
+  p(style='white-space:pre-wrap') #{recipe.directions}
   br
   p #[strong Comment:] #{recipe.comment}

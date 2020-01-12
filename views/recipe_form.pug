@@ -1,13 +1,24 @@
 extends layout
+  
+block head
+  script.
+    function addMore(counter) {     
+      var count = document.getElementById('counter').value
+      var newInput = document.createElement('input')
+      var inputsName = 'ingredients' + count.toString()
+      newInput.setAttribute('type', 'text')
+      newInput.setAttribute('name', inputsName)
+      document.getElementById('addMoreLinesUnder').appendChild(newInput)
+      document.getElementById('counter').value++
+    }
 
 block content
   h1= title
-
   form(method='POST' action='')
     div.form-group 
       label(for='title') Title:
       input#title.form-control(type='text', placeholder='Recipe name', name='title', required='true', value=(undefined===recipe ? '': recipe.title))
-    div.form-group 
+    div.form-group
       label(for='ingredients0') Ingredient 1:
       input#ingredients0.form-control(type='text', placeholder='First Igredient', required='true', name='ingredients0')
       label(for='ingredients1') Ingredient 2:
@@ -23,6 +34,9 @@ block content
       label(for='ingredients6') Ingredient 6:
       input#ingredients6.form-control(type='text', placeholder='Sixth Igredient', name='ingredients6')
       br
+      input#counter.form-control(type="hidden", value=7, name='counter')
+      button.add.add-primary(type='button', onclick="addMore()") Add ingredient
+      div.form-group(id='addMoreLinesUnder')
     div.form-group 
       label(for='directions') Directions:
       textarea#directions.form-control(type='textarea', placeholder='Directions', name='directions', rows='5', required='true') #{undefined===recipe ? '' : recipe.directions}

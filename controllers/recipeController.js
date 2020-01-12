@@ -96,25 +96,14 @@ exports.recipe_create_post = [
   // process request after validation and sanitization
   (req, res, next) => {
     // THIS NEXT BIT REQUIRES MORE WORK AND TESTING!!
-    // req.body.ingredients = new Array(req.body.ingredients);
     // exctract the validation errors from a request
     const errors = validationResult(req);
-
     // Create recipe object with escaped and trimmed data
 
-    // for (val in req.body) {
-    //   if (val === req.body.Ingredient) {
-    //     ingredientList.push({ val });
-    //   }
-    // }
-    // for (var i = 0; i <= 1; i++) {
-    //   ingredientList.push(req.body.i);
-    //   console.log(JSON.stringify(req.body.ingredients));
-    // }
     var ingList = [];
-
+    var ingredientCount = req.body.counter; //start from 6, 6 fields are rendered when site loads.
     var i = 0;
-    while (i <= 6) {
+    while (i <= ingredientCount) {
       var str = "ingredients" + i.toString();
       if (req.body[str]) {
         ingList.push(req.body[str]);
