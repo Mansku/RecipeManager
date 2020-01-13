@@ -6,7 +6,7 @@ var logger = require("morgan");
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
 const mongoDB =
-  "mongodb+srv://sand:box@cluster0-zatvn.azure.mongodb.net/recipeManager?retryWrites=true&w=majority";
+  "mongodb+srv://username:password@cluster0-zatvn.azure.mongodb.net/recipeManager?retryWrites=true&w=majority";
 mongoose.connect(mongoDB, { useNewUrlParser: true });
 var db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
